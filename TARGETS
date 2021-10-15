@@ -1,0 +1,18 @@
+CodeBranch=shell("git branch")
+
+CodeVersion=shell("git rev-parse HEAD")
+
+BuildDate=shell('date -u +%Y-%m-%dT%H:%M:%SZ')
+CodeSource="http://gitlab.alibaba-inc.com/polar-as/polardb-sms.git"
+
+targets={
+    # 将'APP'替换成你的应用名（产出物名），go_program规则代表将编译产出是一个可执行二进制
+    'polardb-sms-agent':go_program(
+        # srcs定义main包main函数所在文件或文件夹，举例说文件名为'main.go'或'./'
+        srcs=['./cmd/agent'],
+        ldflags=["-X 'polardb-sms/pkg/version.GitBranch=`git branch`' \
+        -X 'polardb-sms/pkg/version.GitCommit=`git rev-parse HEAD`' \
+        -X 'polardb-sms/pkg/version.BuildDate=`date -u +%Y-%m-%dT%H:%M:%SZ`' \
+        -X 'polardb-sms/pkg/version.Module=http://gitlab.alibaba-inc.com/polar-as/polardb-sms.git'"],
+    ),
+}

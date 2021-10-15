@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+// https://grpc.io/docs/what-is-grpc/core-concepts/
+
+package protocol;
+
+enum Status {
+    Succeed = 0;
+    Failed = 1;
+}
+
+message UpdateDeviceRequest {
+    string tx_id = 1;
+    string name = 2;
+    string table = 3;
+}
+
+message UpdateDeviceResponse {
+    string tx_id = 1;
+    Status status = 2;
+    string detail = 3;
+}
+
+message CheckHealthRequest {
+    string tx_id = 1;
+}
+
+message CheckHealthResponse {
+    string tx_id = 1;
+    Status status = 2;
+    string detail = 3;
+}
+
+message ReportEventRequest {
+    string tx_id = 1;
+}
+
+message ReportEventResponse {
+    enum Action {
+        Add = 0;
+        Change = 1;
+        Delete = 2;
+    }
+    message Event {
+        Action action = 1;
+        string name = 2;
+    }
+    string tx_id = 1;
+    repeated Event event = 2;
+}
+
+service StorageService {
+
+    rpc UpdateDevice (UpdateDeviceRequest) returns (UpdateDeviceResponse) {
+    }
+
+    rpc CheckHealth (CheckHealthRequest) returns (CheckHealthResponse) {
+    }
+
+    // Bidirectional stream, allow later state interruption and initial server side status feedback
+    rpc ReportEvent (stream ReportEventRequest) returns (stream ReportEventResponse) {
+    }
+}
+

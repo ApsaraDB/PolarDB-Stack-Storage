@@ -1,0 +1,28 @@
+- hosts: dev
+  gather_facts: false
+  tasks:
+  - set_fact:
+      sms_dir: /root/ziang.gza/sms
+
+  - name: prepare dirs
+    file:
+      path: "{{ item }}"
+      state: directory
+      mode: '0777'
+    with_items:
+      - "{{ sms_dir }}/bin"
+      - "{{ sms_dir }}/log"
+
+  - name: sync binaries
+    copy:
+      src: ../bin/agent
+      dest: "{{ sms_dir }}/bin/sms-agent"
+      mode: '0777'
+
+  - name: kill old server
+    shell: pkill sms-agent
+    ignore_errors: true
+
+#  - name: run sms-agent
+#    shell: nohup {{ sms_dir }}/bin/sms-agent > {{ sms_dir }}/log/agent.log 2>&1
+

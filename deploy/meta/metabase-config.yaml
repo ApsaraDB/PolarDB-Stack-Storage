@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  metabase.yml: |-
+    metabase:
+      host: 10.0.0.10
+      port: 3306
+      user: polar
+      password: password
+      type: mysql
+      version: 5.7.31
+kind: ConfigMap
+metadata:
+  name: metabase-config
+  namespace: kube-system

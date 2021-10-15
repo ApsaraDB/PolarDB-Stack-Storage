@@ -1,0 +1,17 @@
+[Unit]
+Description=PolarDB Storage Management System Agent
+After=network.target
+
+[Service]
+#PrivateTmp=true
+Type=forking
+#RemainAfterExit=yes
+ExecStart=/usr/local/polardb-sms-agent/bin/service.sh -s start
+ExecStop=/usr/local/polardb-sms-agent/bin/services.sh -s stop
+#KillMode=process
+Restart=on-failure
+StartLimitBurst=3
+StartLimitInterval=60s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-test
+spec:
+  template:
+    metadata:
+      labels:
+        app: nginx-test
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      volumes:
+        - name: fpga
+          hostPath:
+            path: /dev/fpga
+            type: DirectoryOrCreate
+      containers:
+        - name: nginx-test
+          image: alpine:3.9
+          ports:
+            - containerPort: 18889
+          volumeMounts:
+            - mountPath: /dev/fpga
+              name: fpga
+  selector:
+    matchLabels:
+      app: nginx-test

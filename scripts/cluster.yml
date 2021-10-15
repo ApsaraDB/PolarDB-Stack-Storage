@@ -1,0 +1,48 @@
+--- # polardb-sms agent ansible playbook application
+- hosts: all
+  gather_facts: no
+  remote_user: root
+  vars:
+    action: "{{ action }}"
+  tasks:
+    - name: agent config batch
+      copy:
+        src: "{{ agent_blacklist }}"
+        dest: /etc/polardb-sms-agent.conf
+        mode: 755
+      when: action == "config"
+      tags:
+        - config
+    - name: supervisor reload
+      command: supervisorctl reload
+      when: action == "reload"
+      tags:
+        - reload
+    - name: init agent work directory
+      file:
+        path: "{{ agent_dir }}"
+        state: directory
+        mode: '0777'
+      when: action == "install"
+      tags:
+        - init
+    - name: sync agent rpm package
+      synchronize:
+        src: "{{ rpm_dir }}/{{ agent_rpm }}"
+        dest: "{{ agent_dir }}"
+      when: action == "install"
+      tags:
+        - sync
+    - name: copy agent install script
+      copy:
+        src: "{{ agent_script }}"
+        dest: "{{ agent_dir }}"
+        mode: 755
+      when: action == "install"
+      tags:
+        - copy
+    - name: exec agent install script
+      shell: sh {{ agent_dir }}/{{ agent_script }} {{ action }} {{ report_endpoint }} {{ nic }} {{ agent_rpm }} {{ agent_dir }} > {{ agent_dir }}/install.log 2>&1
+      when: action == "install"
+      tags:
+        - exec

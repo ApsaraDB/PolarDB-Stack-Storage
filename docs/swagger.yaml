@@ -1,0 +1,1507 @@
+basePath: /v2
+definitions:
+  domain.VolumeStatus:
+    properties:
+      error_code:
+        type: string
+      error_message:
+        type: string
+      status_value:
+        type: integer
+    type: object
+  lv.PrCheckList:
+    properties:
+      support_pr_7:
+        type: boolean
+      support_pr_attempt:
+        type: boolean
+      support_pr_clear:
+        type: boolean
+      support_pr_register:
+        type: boolean
+      support_pr_release:
+        type: boolean
+      support_pr_reserve:
+        type: boolean
+    type: object
+  lv.PrInfo:
+    additionalProperties:
+      $ref: '#/definitions/lv.PrCheckList'
+    type: object
+  protocol.Event:
+    properties:
+      body:
+        type: string
+      eType:
+        type: integer
+      id:
+        type: string
+    type: object
+  view.ClusterLunCreateRequest:
+    properties:
+      cluster_id:
+        type: integer
+      desc:
+        type: string
+      fs_type:
+        type: string
+      name:
+        type: string
+      node_ids:
+        type: string
+      path:
+        type: string
+      pr_support_status:
+        type: string
+      sector_num:
+        type: integer
+      sector_size:
+        type: integer
+      size:
+        type: integer
+      vendor:
+        type: string
+      wwid:
+        type: string
+    type: object
+  view.ClusterLunFormatRequest:
+    properties:
+      fs_size:
+        type: integer
+      fs_type:
+        type: string
+      name:
+        type: string
+      wwid:
+        type: string
+    type: object
+  view.ClusterLunFsExpandRequest:
+    properties:
+      fs_size:
+        type: integer
+      fs_type:
+        type: string
+      name:
+        type: string
+      pv_name:
+        type: string
+      wwid:
+        type: string
+    type: object
+  view.ClusterLunResponse:
+    properties:
+      cluster_id:
+        type: integer
+      db_cluster_name:
+        type: string
+      desc:
+        type: string
+      fs_size:
+        type: integer
+      fs_type:
+        type: string
+      lv_name:
+        type: string
+      name:
+        type: string
+      node_ids:
+        type: string
+      path_num:
+        type: integer
+      paths:
+        items:
+          type: string
+        type: array
+      pr_support_status:
+        type: string
+      product:
+        type: string
+      pvc_name:
+        type: string
+      sector_num:
+        type: integer
+      sector_size:
+        type: integer
+      size:
+        type: integer
+      status:
+        $ref: '#/definitions/domain.VolumeStatus'
+      usable:
+        type: boolean
+      used_size:
+        type: integer
+      vendor:
+        type: string
+      volume_type:
+        type: string
+      wwid:
+        type: string
+    type: object
+  view.ClusterLvCreateRequest:
+    properties:
+      dm_table:
+        type: string
+      fs_type:
+        type: string
+      luns:
+        items:
+          $ref: '#/definitions/view.MultipathVolumeView'
+        type: array
+      mode:
+        type: string
+      name:
+        type: string
+      node_ids:
+        type: string
+      sector_num:
+        type: integer
+      sector_size:
+        type: integer
+      size:
+        type: integer
+      status:
+        type: integer
+      vendor:
+        type: string
+    type: object
+  view.ClusterLvFormatRequest:
+    properties:
+      fs_size:
+        type: integer
+      fs_type:
+        type: string
+      volume_id:
+        type: string
+      volume_name:
+        type: string
+    type: object
+  view.ClusterLvFsExpandRequest:
+    properties:
+      fs_type:
+        type: string
+      req_size:
+        type: integer
+      volume_id:
+        type: string
+      volume_name:
+        type: string
+    type: object
+  view.ClusterLvResponse:
+    properties:
+      children:
+        items:
+          $ref: '#/definitions/view.MultipathVolumeView'
+        type: array
+      cluster_id:
+        type: integer
+      db_cluster_name:
+        type: string
+      desc:
+        type: string
+      fs_size:
+        type: integer
+      fs_type:
+        type: string
+      lv_name:
+        type: string
+      node_ids:
+        type: string
+      pr_support_status:
+        type: string
+      pvc_name:
+        type: string
+      sector_num:
+        type: integer
+      sector_size:
+        type: integer
+      size:
+        type: integer
+      status:
+        $ref: '#/definitions/domain.VolumeStatus'
+      usable:
+        type: boolean
+      used_size:
+        type: integer
+      volume_id:
+        type: string
+      volume_name:
+        type: string
+      volume_type:
+        type: string
+    type: object
+  view.DmCreateCmdResponse:
+    properties:
+      lv_name:
+        type: string
+      lv_type:
+        type: string
+      preview_conf:
+        type: string
+      sector_size:
+        type: integer
+      sectors:
+        type: integer
+      size:
+        type: integer
+    type: object
+  view.ErrorResult:
+    properties:
+      error:
+        type: string
+    type: object
+  view.GenerateDmCreateCmdRequest:
+    properties:
+      lun_ids_in_order:
+        items:
+          type: string
+        type: array
+      lv_name:
+        type: string
+      lv_type:
+        type: string
+    type: object
+  view.MultipathVolumeView:
+    properties:
+      capacity:
+        type: string
+      name:
+        type: string
+      sector_num:
+        type: integer
+      sector_size:
+        type: integer
+      volume_id:
+        type: string
+    type: object
+  view.Node:
+    properties:
+      node_id:
+        type: string
+      node_ip:
+        type: string
+    type: object
+  view.PrCheckRequest:
+    properties:
+      name:
+        type: string
+      node_id:
+        type: string
+      volume_id:
+        type: string
+      volume_type:
+        type: string
+    type: object
+  view.PrCheckResponse:
+    properties:
+      pr_info:
+        $ref: '#/definitions/lv.PrInfo'
+    type: object
+  view.PvcBindVolumeRequest:
+    properties:
+      name:
+        type: string
+      namespace:
+        type: string
+      need_format:
+        type: boolean
+      resource_id:
+        description: pvc对应的clusterID
+        type: string
+      storage_class:
+        type: string
+      volume_id:
+        type: string
+      volume_type:
+        type: string
+    type: object
+  view.PvcCreateWithVolumeRequest:
+    properties:
+      name:
+        type: string
+      namespace:
+        type: string
+      need_format:
+        type: boolean
+      volume_id:
+        type: string
+      volume_type:
+        type: string
+    type: object
+  view.PvcExpandFsRequest:
+    properties:
+      fs_type:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+      req_size:
+        type: integer
+      volume_id:
+        type: string
+      volume_type:
+        type: string
+    type: object
+  view.PvcExpandFsResponse:
+    properties:
+      err_message:
+        type: string
+      status:
+        type: integer
+    type: object
+  view.PvcFormatRequest:
+    properties:
+      name:
+        type: string
+      namespace:
+        type: string
+    type: object
+  view.PvcIsReadyResponse:
+    properties:
+      is_ready:
+        type: boolean
+    type: object
+  view.PvcRequest:
+    properties:
+      name:
+        type: string
+      namespace:
+        type: string
+    type: object
+  view.PvcResponse:
+    properties:
+      db_cluster_name:
+        type: string
+      fs_type:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+      size_in_byte:
+        type: integer
+      status:
+        $ref: '#/definitions/domain.VolumeStatus'
+      usable:
+        type: boolean
+      volume_id:
+        type: string
+      volume_name:
+        type: string
+      volume_type:
+        type: string
+    type: object
+  view.PvcVolumePermissionTopoResponse:
+    properties:
+      read_nodes:
+        items:
+          $ref: '#/definitions/view.Node'
+        type: array
+      write_node:
+        $ref: '#/definitions/view.Node'
+    type: object
+  view.PvcWriteLockRequest:
+    properties:
+      name:
+        type: string
+      namespace:
+        type: string
+      write_lock_node_id:
+        type: string
+      write_lock_node_ip:
+        type: string
+    type: object
+  view.WorkflowIdResponse:
+    properties:
+      workflow_id:
+        type: string
+    type: object
+  view.WorkflowResponse:
+    properties:
+      mode:
+        type: integer
+      stages:
+        type: string
+      status:
+        type: integer
+      step:
+        type: integer
+      type:
+        type: integer
+      workflow_id:
+        type: string
+    type: object
+host: 127.0.0.1:2002
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: v1.8 存储管理系统
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: PolarDB Storage Manage System
+  version: "1.0"
+paths:
+  /agents/heartbeat:
+    post:
+      consumes:
+      - application/json
+      description: 用于 心跳报告
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 心跳报告
+      tags:
+      - Agent 管理
+  /cluster-luns:
+    get:
+      consumes:
+      - application/json
+      description: 用于查询所有 Cluster LUN
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/view.ClusterLunResponse'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 列表 Cluster LUN
+      tags:
+      - LUN 管理
+    post:
+      consumes:
+      - application/json
+      description: 用于创建 Cluster LUN
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLun
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLunCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 创建 Cluster LUN
+      tags:
+      - LUN 管理
+  /cluster-luns/:wwid:
+    delete:
+      consumes:
+      - application/json
+      description: 用于删除指定 Cluster LUN
+      parameters:
+      - description: LUN WWID
+        in: query
+        name: wwid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 删除 Cluster LUN
+      tags:
+      - LUN 管理
+    get:
+      consumes:
+      - application/json
+      description: 用于查询指定 Cluster LUN
+      parameters:
+      - description: LUN WWID
+        in: query
+        name: wwid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.ClusterLunResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询 Cluster LUN
+      tags:
+      - LUN 管理
+  /cluster-luns/expand:
+    post:
+      consumes:
+      - application/json
+      description: 用于扩容指定 Cluster LUN
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLun
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLunCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 扩容 Cluster LUN
+      tags:
+      - LUN 管理
+  /cluster-luns/format:
+    post:
+      consumes:
+      - application/json
+      description: 用于格式化指定 Cluster LUN
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLun
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLunFormatRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 格式化 Cluster LUN
+      tags:
+      - LUN 管理
+  /cluster-luns/fs-expand:
+    post:
+      consumes:
+      - application/json
+      description: 用于扩容指定 Cluster LUN Filesystem
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLun
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLunFsExpandRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 扩容 Cluster LUN For Filesystem
+      tags:
+      - LUN 管理
+  /cluster-lvs:
+    get:
+      consumes:
+      - application/json
+      description: 用于列表 Cluster LV
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/view.ClusterLvResponse'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 列表 Cluster LV
+      tags:
+      - LV 管理
+    post:
+      consumes:
+      - application/json
+      description: 用于创建 Cluster LV
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLv
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLvCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 创建 Cluster LV
+      tags:
+      - LV 管理
+  /cluster-lvs/:name:
+    delete:
+      consumes:
+      - application/json
+      description: 用于删除指定 Cluster LV
+      parameters:
+      - description: lv name
+        in: query
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 删除 Cluster LV
+      tags:
+      - LV 管理
+    get:
+      consumes:
+      - application/json
+      description: 用于查询 Cluster LV
+      parameters:
+      - description: LV name
+        in: query
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.ClusterLvResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询 Cluster LV
+      tags:
+      - LV 管理
+  /cluster-lvs/dm-conf:
+    post:
+      consumes:
+      - application/json
+      description: 用于生成预览的lv的配置文件
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLv
+        required: true
+        schema:
+          $ref: '#/definitions/view.GenerateDmCreateCmdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.DmCreateCmdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 生成预览的lv的配置文件
+      tags:
+      - LV 管理
+  /cluster-lvs/expand:
+    post:
+      consumes:
+      - application/json
+      description: 用于扩容指定 Cluster LV
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLv
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLvCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 扩容 Cluster LV
+      tags:
+      - LV 管理
+  /cluster-lvs/format:
+    post:
+      consumes:
+      - application/json
+      description: 用于格式化指定 Cluster LV
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLv
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLvFormatRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 格式化 Cluster LV
+      tags:
+      - LV 管理
+  /cluster-lvs/fs-expand:
+    post:
+      consumes:
+      - application/json
+      description: 用于扩容指定 Cluster LV Filesystem
+      parameters:
+      - description: 请求参数
+        in: body
+        name: clusterLv
+        required: true
+        schema:
+          $ref: '#/definitions/view.ClusterLvFsExpandRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 扩容 Cluster LV For Filesystem
+      tags:
+      - LV 管理
+  /events:
+    post:
+      consumes:
+      - application/json
+      description: 用于存储事件上报
+      parameters:
+      - in: query
+        name: body
+        type: string
+      - in: query
+        name: eType
+        type: integer
+      - in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: Event Upload
+      tags:
+      - Event 接入管理
+  /events/batch:
+    post:
+      consumes:
+      - application/json
+      description: 用于存储事件上报
+      parameters:
+      - in: query
+        name: node_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: Batch Event Upload
+      tags:
+      - Event 接入管理
+  /pr-check/detail:
+    get:
+      consumes:
+      - application/json
+      description: 用于检查PR所支持的能力的结果查询
+      parameters:
+      - description: 请求参数
+        in: query
+        name: volumeId
+        required: true
+        type: string
+      - description: 请求参数
+        in: query
+        name: volumeClass
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.PrCheckResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: Pr Check Detail Capability Response
+      tags:
+      - PR Check 接入管理
+    post:
+      consumes:
+      - application/json
+      description: 用于检查PR所支持的能力
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PrCheckRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: Pr Check Detail Capability
+      tags:
+      - PR Check 接入管理
+  /pr-check/overall:
+    post:
+      consumes:
+      - application/json
+      description: 用于获取PR所支持的能力
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PrCheckRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.PrCheckResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: Pr Check Overall Capability
+      tags:
+      - PR Check 接入管理
+  /pvcs:
+    get:
+      consumes:
+      - application/json
+      description: 用于查询指定pvc列表
+      parameters:
+      - description: pvc used volumeType
+        in: query
+        name: volumeType
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/view.PvcResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询pvc 列表
+      tags:
+      - PVC 接入管理
+    post:
+      consumes:
+      - application/json
+      description: 用于创建 PVC
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcCreateWithVolumeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 创建 PVC
+      tags:
+      - PVC 接入管理
+  /pvcs/:name:
+    delete:
+      consumes:
+      - application/json
+      description: 用于删除 PVC
+      parameters:
+      - description: pvc name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: pvc namespace
+        in: query
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 删除 PVC
+      tags:
+      - PVC 接入管理
+    get:
+      consumes:
+      - application/json
+      description: 用于查询指定的pvc
+      parameters:
+      - description: pvc name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: pvc namespace
+        in: query
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.PvcResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询pvc
+      tags:
+      - PVC 接入管理
+  /pvcs/expand:
+    get:
+      consumes:
+      - application/json
+      description: PVC对应的数据库集群扩容是否结束
+      parameters:
+      - description: workflowId
+        in: query
+        name: workflowId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.PvcExpandFsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: PVC扩容查询
+      tags:
+      - PVC 接入管理
+    post:
+      consumes:
+      - application/json
+      description: PVC对应的数据库集群扩容
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcExpandFsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: PVC扩容
+      tags:
+      - PVC 接入管理
+  /pvcs/format:
+    post:
+      consumes:
+      - application/json
+      description: 用于PVC format
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcFormatRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: PVC format
+      tags:
+      - PVC 接入管理
+  /pvcs/formatAndLock:
+    post:
+      consumes:
+      - application/json
+      description: 用于PVC 强制format和lock, 添加写锁节点, 集群中只有一个节点可以添加写锁
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcWriteLockRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: PVC 强制format和lock
+      tags:
+      - PVC 接入管理
+  /pvcs/lock:
+    post:
+      consumes:
+      - application/json
+      description: 用于PVC 添加写锁节点, 集群中只有一个节点可以添加写锁
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcWriteLockRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: PVC 添加写锁节点
+      tags:
+      - PVC 接入管理
+  /pvcs/ready:
+    get:
+      consumes:
+      - application/json
+      description: 用于创建集群时，查询PVC是否准备完，可以使用
+      parameters:
+      - description: pvc name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: workflowId
+        in: query
+        name: workflowId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.PvcIsReadyResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询 PVC是否ready
+      tags:
+      - PVC 接入管理
+  /pvcs/release:
+    post:
+      consumes:
+      - application/json
+      description: 用于释放 PVC
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 释放 PVC
+      tags:
+      - PVC 接入管理
+  /pvcs/topo:
+    get:
+      consumes:
+      - application/json
+      description: 用于集群校验读写拓扑，查询磁盘在集群各个节点的读写权限
+      parameters:
+      - description: pvc name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: workflowId
+        in: query
+        name: workflowId
+        required: true
+        type: string
+      - description: pvc namespace
+        in: query
+        name: namespace
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.PvcVolumePermissionTopoResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询 PVC后端的磁盘读写权限
+      tags:
+      - PVC 接入管理
+  /pvcs/use:
+    post:
+      consumes:
+      - application/json
+      description: 创建集群的时候，指定使用 PVC, 默认需要Bind Pvc和已有的磁盘，更新pvc和volume的状态
+      parameters:
+      - description: 请求参数
+        in: body
+        name: pvc
+        required: true
+        schema:
+          $ref: '#/definitions/view.PvcBindVolumeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 使用 PVC
+      tags:
+      - PVC 接入管理
+  /scsi/rescan:
+    post:
+      consumes:
+      - application/json
+      description: 用于扫描 Volume Rescan
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 扫描 Volume Rescan
+      tags:
+      - Scsi 管理
+  /workflows/:workflowId:
+    get:
+      consumes:
+      - application/json
+      description: 用于查询 WorkflowEntity
+      parameters:
+      - description: 请求参数
+        in: query
+        name: workflowId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/view.WorkflowResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.ErrorResult'
+      summary: 查询 WorkflowEntity
+      tags:
+      - Workflow 管理
+swagger: "2.0"

@@ -1,0 +1,54 @@
+syntax = "proto3";
+package message;
+
+message SmsMessageHead {
+  enum SmsMsgType {
+    ACK = 0;
+    CMD_PR_EXEC_REQ = 10;
+    CMD_PR_EXEC_RESP = 11;
+    CMD_PR_BATCH_REQ = 20;
+    CMD_PR_BATCH_RESP = 21;
+    CMD_DM_CREAT_REQ = 100;
+    CMD_DM_CREAT_RESP = 101;
+    CMD_DM_UPDATE_REQ = 102;
+    CMD_DM_UPDATE_RESP = 103;
+    CMD_DM_DELETE_REQ = 104;
+    CMD_DM_DELETE_RESP = 105;
+    CMD_RESCAN_REQ = 300;
+    CMD_RESCAN_RESP = 301;
+    CMD_EXPAND_FS_REQ = 400;
+    CMD_EXPAND_FS_RESP = 401;
+    CMD_FORMAT_FS_REQ = 500;
+    CMD_FORMAT_FS_RESP = 501;
+    CMD_LUN_CREATE_REQ = 600;
+    CMD_LUN_CREATE_RESP = 601;
+    CMD_LUN_EXPAND_REQ = 700;
+    CMD_LUN_EXPAND_RESP = 701;
+    CMD_PVC_CREATE_REQ = 800;
+    CMD_PVC_CREATE_RESP = 801;
+    CMD_PVC_RELEASE_REQ = 900;
+    CMD_PVC_RELEASE_RESP = 901;
+    DUMMY_REQ = 10000;
+    DUMMY_RESP = 10001;
+  }
+  SmsMsgType msgType = 1;
+  string msgId = 2;
+  int32 msgLen = 3;
+  string ackMsgId = 4;
+  map<string, string> traceContext = 5;
+}
+
+message MessageBody{
+  enum Status {
+    Success = 0;
+    Fail = 1;
+  }
+  Status execStatus = 1;
+  string errMsg = 2;
+  bytes content = 3;
+}
+
+message SmsMessage {
+  SmsMessageHead head = 1;
+  MessageBody body = 2;
+}
