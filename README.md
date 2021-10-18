@@ -43,7 +43,7 @@
 
 ### 安装/运行
 
-参考[《安装手册》](https://github.com/ApsaraDB/PolarDB-Stack-Operator/docs/install.md)
+参考[《安装手册》](https://github.com/ApsaraDB/PolarDB-Stack-Operator/blob/master/docs/install.md)
 
 # 文档
 
