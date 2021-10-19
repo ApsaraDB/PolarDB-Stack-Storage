@@ -12,7 +12,7 @@ WORKDIR $DIR
 
 COPY go.mod go.sum ./
 
-RUN go env -w GOPROXY=https://goproxy.cn,direct && \
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 
 RUN go mod download
 
