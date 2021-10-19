@@ -36,11 +36,11 @@ require (
 	google.golang.org/protobuf v1.26.0-rc.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0
-	k8s.io/api v0.19.4
-	k8s.io/apimachinery v0.19.4
-	k8s.io/client-go v0.19.4
-	k8s.io/klog v0.3.1
-	k8s.io/sample-controller v0.19.4
+	k8s.io/api v0.17.2
+	k8s.io/apimachinery v0.17.2
+	k8s.io/client-go v0.17.2
+	k8s.io/klog v1.0.0
+	k8s.io/sample-controller v0.17.2
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	xorm.io/xorm v1.0.5
 )
