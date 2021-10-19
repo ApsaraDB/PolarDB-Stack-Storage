@@ -1,4 +1,4 @@
-FROM reg.docker.alibaba-inc.com/polar-gocommon/golang:1.13.10 as builder
+FROM golang:1.13.10 as builder
 
 ARG ssh_prv_key
 
@@ -13,21 +13,12 @@ WORKDIR $DIR
 COPY go.mod go.sum ./
 
 RUN go env -w GOPROXY=https://goproxy.cn,direct && \
-    go env -w GOPRIVATE=gitlab.alibaba-inc.com
 
-RUN mkdir /root/.ssh && \
-    chmod 700 /root/.ssh && \
-    echo "${ssh_prv_key}" > /root/.ssh/id_rsa && \
-    echo "${ssh_pub_key}" > /root/.ssh/id_rsa.pub && \
-    chmod 600 /root/.ssh/id_rsa && \
-    chmod 600 /root/.ssh/id_rsa.pub && \
-    echo "Host gitlab.alibaba-inc.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config && \
-    git config --global url."git@gitlab.alibaba-inc.com:".insteadOf "https://gitlab.alibaba-inc.com/" && \
-    go mod download
+RUN go mod download
 
 COPY / $DIR
 
-ARG CodeSource='http://gitlab.alibaba-inc.com/polar-as/polardb-sms.git'
+ARG CodeSource='https://github.com/ApsaraDB/PolarDB-Stack-Storage.git'
 
 ARG CodeBranch='git branch --show-current'
 
@@ -42,7 +33,7 @@ RUN CGO_ENABLED=0 go build -ldflags "-X '$PKG/pkg/version.GitBranch=$CodeBranch'
 
 FROM alpine:3.12
 
-ARG CodeSource='http://gitlab.alibaba-inc.com/polar-as/polardb-sms.git'
+ARG CodeSource='https://github.com/ApsaraDB/PolarDB-Stack-Storage.git'
 
 ARG CodeBranch='git branch --show-current'
 
