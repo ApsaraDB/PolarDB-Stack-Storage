@@ -12,7 +12,7 @@ require (
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.0
-	github.com/googleapis/gnostic v0.5.3 // indirect
+	github.com/googleapis/gnostic v0.4.0 // indirect
 	github.com/imdario/mergo v0.3.9 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/ngaut/log v0.0.0-20180314031856-b8e36e7ba5ac
