@@ -1,4 +1,4 @@
-module github.com/ApsaraDB/PolarDB-Stack-Storage
+module polardb-sms
 
 go 1.16
 
