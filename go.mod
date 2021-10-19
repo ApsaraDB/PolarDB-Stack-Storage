@@ -14,10 +14,9 @@ require (
 	github.com/golang/protobuf v1.5.0
 	github.com/googleapis/gnostic v0.5.3 // indirect
 	github.com/imdario/mergo v0.3.9 // indirect
-	github.com/jkeiser/iter v0.0.0-20200628201005-c8aa0ae784d1
-	github.com/kr/pretty v0.2.0
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/ngaut/log v0.0.0-20180314031856-b8e36e7ba5ac
+	github.com/pkg/errors v0.9.1
 	github.com/smartystreets/assertions v1.0.0 // indirect
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/stretchr/testify v1.6.1
@@ -28,7 +27,6 @@ require (
 	go.uber.org/zap v1.16.0
 	golang.org/x/net v0.0.0-20210119194325-5f4716e94777
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d // indirect
-	golang.org/x/sys v0.0.0-20210119212857-b64e53b001e4
 	golang.org/x/text v0.3.5 // indirect
 	golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e // indirect
 	golang.org/x/tools v0.1.0 // indirect
@@ -41,13 +39,10 @@ require (
 	k8s.io/api v0.19.4
 	k8s.io/apimachinery v0.19.4
 	k8s.io/client-go v0.19.4
+	k8s.io/klog v0.3.1
 	k8s.io/sample-controller v0.19.4
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	xorm.io/xorm v1.0.5
 )
 
-replace (
-	github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.4.0
-	k8s.io/api => k8s.io/api v0.0.0-20200131232428-e3a917c59b04
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200409202947-6e7c4b1e1854
-)
+replace github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.4.0
