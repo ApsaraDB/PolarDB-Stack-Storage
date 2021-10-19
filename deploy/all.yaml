@@ -49,7 +49,7 @@ spec:
             - "--log_level=DEBUG"
             - "--node_id=$(NODE_ID)"
             - "--node_ip=$(NODE_IP)"
-          image: reg.docker.alibaba-inc.com/polarbox/polardb-sms-manager:1.0.0
+          image: polardb/polardb-sms-manager:1.0.0
           imagePullPolicy: IfNotPresent
           resources:
             limits:
