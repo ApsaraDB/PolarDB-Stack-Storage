@@ -44,5 +44,3 @@ require (
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	xorm.io/xorm v1.0.5
 )
-
-replace github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.4.0
