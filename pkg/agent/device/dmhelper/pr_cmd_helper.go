@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
 *limitations under the License.
  */
 
-
 package dmhelper
 
 import (
@@ -25,8 +24,7 @@ import (
 )
 
 func getPrSupportParam(name string) *device.PrSupportReport {
-	ret := &device.PrSupportReport{
-	}
+	ret := &device.PrSupportReport{}
 	devicePath := "/dev/mapper/" + name
 	var prInfo *mpathpersist.PersistentReserve
 	var err error

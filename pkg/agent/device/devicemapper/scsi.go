@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package devicemapper
 
@@ -41,7 +40,7 @@ type scsi struct {
 func (s *scsi) ScanDeviceFcHost() error {
 	fcScanCmd := fmt.Sprintf("for x in `ls /sys/class/fc_host`; do " +
 		"echo \"- - -\" > /sys/class/scsi_host/$x/scan; done")
-	out, stderr, err := utils.Exec(fcScanCmd, 20 * time.Second)
+	out, stderr, err := utils.Exec(fcScanCmd, 20*time.Second)
 	if err != nil {
 		smslog.Errorf("exec command %s stderr %s err %s", fcScanCmd, stderr, err.Error())
 		return fmt.Errorf("failed scan fc host: %v", err)
@@ -60,7 +59,7 @@ func (s *scsi) ScanDeviceIscsiHost() error {
 	iScsiScanCmd := fmt.Sprintf("for x in `ls /sys/class/iscsi_host`; do " +
 		"echo \"- - -\" > /sys/class/scsi_host/$x/scan; done")
 
-	out, stderr, err := utils.Exec(iScsiScanCmd, 20 * time.Second)
+	out, stderr, err := utils.Exec(iScsiScanCmd, 20*time.Second)
 	if err != nil {
 		smslog.Errorf("exec command %s stderr %s err %s", iScsiScanCmd, stderr, err.Error())
 		return fmt.Errorf("failed scan iscsi host: %v", err)
@@ -81,7 +80,7 @@ func (s *scsi) ScsiDeviceRescan() error {
 	*/
 	rescanCmd := fmt.Sprintf("for x in $(multipath -l|grep ' active'|awk '{print $(NF-4)}'); do " +
 		"echo 1 > /sys/block/$x/device/rescan; done")
-	_, stderr, err := utils.Exec(rescanCmd, 60 * time.Second)
+	_, stderr, err := utils.Exec(rescanCmd, 60*time.Second)
 	if err != nil {
 		smslog.Errorf("exec command %s stderr %s err %s", rescanCmd, stderr, err.Error())
 		return errors.Wrap(err, stderr)

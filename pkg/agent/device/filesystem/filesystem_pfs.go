@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package filesystem
 
@@ -84,7 +83,7 @@ func (p *Pfs) BrowseFilesystem(deviceName string) (int64, error) {
 	}
 
 	pfsInfoCmd := getPfsCmd(pbdName, PfsOptions{command: "info"})
-	outInfo, stderr, err := utils.ExecCommand(pfsInfoCmd, 20 * time.Second)
+	outInfo, stderr, err := utils.ExecCommand(pfsInfoCmd, 20*time.Second)
 	if err != nil {
 		smslog.Debugf("pfs info %s failed, stdout: %s, stderr: %s, err: %s", deviceName, outInfo, stderr, err)
 		return 0, fmt.Errorf("failed exec command %s err %s", pfsInfoCmd, err)
@@ -159,7 +158,7 @@ func (p *Pfs) FormatFilesystem(deviceName string) error {
 		return err
 	}
 	reqSizeIn100GiB := blockDevBytes / (100 * 1024 * 1024 * 1024)
-	stdout, stderr, err := utils.ExecCommand(pfsMkfsCmd, time.Duration(20 + 10 * reqSizeIn100GiB) * time.Second)
+	stdout, stderr, err := utils.ExecCommand(pfsMkfsCmd, time.Duration(20+10*reqSizeIn100GiB)*time.Second)
 	if err != nil {
 		smslog.Debugf("pfs mkfs %s failed, stdout: %s, stderr: %s, err: %s", deviceName, stdout, stderr, err)
 		return fmt.Errorf("failed exec command %s err %s", pfsMkfsCmd, err)
@@ -212,7 +211,7 @@ func (p *Pfs) ExpandFilesystem(deviceName string, expandCapacity int64, originCa
 	}
 	pfsExpandCmd := getPfsCmd(pbdName, PfsOptions{command: "growfs", oldChunkNum: oldChunkNum, newChunkNum: newChunkNum})
 	reqSizeIn100GiB := blockDevBytes / (100 * 1024 * 1024 * 1024)
-	stdout, stderr, err := utils.ExecCommand(pfsExpandCmd, time.Duration(20 + 10 * reqSizeIn100GiB) * time.Second)
+	stdout, stderr, err := utils.ExecCommand(pfsExpandCmd, time.Duration(20+10*reqSizeIn100GiB)*time.Second)
 	if err != nil {
 		smslog.Debugf("pfs growfs %s failed, stdout: %s, stderr: %s, err: %s", deviceName, stdout, stderr, err)
 		return fmt.Errorf("failed exec command %s err %s", pfsExpandCmd, err)

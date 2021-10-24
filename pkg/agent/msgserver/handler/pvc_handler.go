@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package handler
 
@@ -92,16 +91,16 @@ func (h *PvcCreateHandler) Handle(msg *message.SmsMessage) *message.SmsMessage {
 }
 
 type PvcReleaseHandler struct {
-	prExecProcessor Processor
+	prExecProcessor     Processor
 	nvmePRExecProcessor Processor
-	nodeIp          string
+	nodeIp              string
 }
 
 func NewPvcReleaseHandler(nodeIp string) ReqHandler {
 	return &PvcReleaseHandler{
-		prExecProcessor: mpathpersist.NewPrExecWrapper(),
+		prExecProcessor:     mpathpersist.NewPrExecWrapper(),
 		nvmePRExecProcessor: nvme.NewNvmeExecWrapper(),
-		nodeIp:          nodeIp,
+		nodeIp:              nodeIp,
 	}
 }
 

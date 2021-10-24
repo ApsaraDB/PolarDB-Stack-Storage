@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package nvme
 
@@ -45,7 +44,7 @@ func NewNvmeReservationInfo() *NvmeReservationInfo {
 func GetPrInfo(device string) (*mpathpersist.PersistentReserve, error) {
 	var (
 		cmd string
-		pr = mpathpersist.NewPersistentReserve()
+		pr  = mpathpersist.NewPersistentReserve()
 	)
 	cmd = fmt.Sprintf("nvme resv-report %s -n 1 -c 0x1 -o json", device)
 	keyOut, keyErr, err := utils.ExecCommand(cmd, mpathpersist.DefaultTimeout)

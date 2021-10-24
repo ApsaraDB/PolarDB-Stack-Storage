@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
 *limitations under the License.
  */
 
-
 package filesystem
 
 type Filesystem interface {
@@ -21,5 +20,3 @@ type Filesystem interface {
 	FormatFilesystem(deviceName string) error
 	ExpandFilesystem(deviceName string, expandCapacity int64, originCapacity int64) error
 }
-
-
