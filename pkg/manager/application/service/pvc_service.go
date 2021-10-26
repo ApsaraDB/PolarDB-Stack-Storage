@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package service
 
@@ -84,7 +83,7 @@ func (s *PvcService) PvcExpandFs(ctx common.TraceContext, request *view.PvcExpan
 	return &view.WorkflowIdResponse{WorkflowId: wfl.Id}, nil
 }
 
-func (s *PvcService) createPvc(pvcEntity *k8spvc.PersistVolumeClaimEntity,lvEntity *lv.LogicalVolumeEntity) error {
+func (s *PvcService) createPvc(pvcEntity *k8spvc.PersistVolumeClaimEntity, lvEntity *lv.LogicalVolumeEntity) error {
 	//create pvc status is creating
 	pvcEntity.PvcStatus = domain.VolumeStatus{
 		StatusValue: domain.Creating,

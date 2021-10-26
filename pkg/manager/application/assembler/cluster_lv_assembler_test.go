@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package assembler
 
@@ -28,9 +27,9 @@ func TestToClusterLvEntity(t *testing.T) {
 		Name: "test",
 		Luns: []view.MultipathVolumeView{
 			{
-				VolumeName:     "lun01",
-				VolumeId:     "36e00084100ee7ec972e7047800001f6e",
-				Capacity: "210G",
+				VolumeName: "lun01",
+				VolumeId:   "36e00084100ee7ec972e7047800001f6e",
+				Capacity:   "210G",
 			},
 		},
 		Mode:       0,

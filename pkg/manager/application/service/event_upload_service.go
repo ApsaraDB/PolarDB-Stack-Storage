@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package service
 
@@ -197,7 +196,7 @@ func (s *EventUploadService) updateLvByEvent(lvEntity *lv.LogicalVolumeEntity, e
 	lvEntity.UsedSize = event.UsedSize
 	lvEntity.AddNodeId(event.NodeId)
 	lvEntity.AddChildByTypeAndId(common.Pv, event.VolumeId, event.NodeId)
-	if len(lvEntity.NodeIds) >= (len(config.GetAvailableNodes()) - 1) && lvEntity.Status.StatusValue == domain.NoAction {
+	if len(lvEntity.NodeIds) >= (len(config.GetAvailableNodes())-1) && lvEntity.Status.StatusValue == domain.NoAction {
 		lvEntity.Status.StatusValue = domain.Success
 	}
 

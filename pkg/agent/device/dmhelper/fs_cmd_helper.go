@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package dmhelper
 
@@ -106,7 +105,7 @@ func getFileSystemParam(deviceName string) (*FileSystemParam, error) {
 func isPfs(deviceName string) bool {
 	devicePath := fmt.Sprintf("/dev/mapper/%s", deviceName)
 	checkCmd := fmt.Sprintf("xxd -l 16 %s | grep JCSFP -B 1", devicePath)
-	stdout, stderr, err  := utils.ExecCommand(checkCmd, utils.CmdDefaultTimeout)
+	stdout, stderr, err := utils.ExecCommand(checkCmd, utils.CmdDefaultTimeout)
 	if err != nil {
 		smslog.Debugf("xxd read %s failed, stdout: %s, stderr: %s, err: %s", deviceName, stdout, stderr, err)
 		return false
@@ -119,7 +118,7 @@ func isPfs(deviceName string) bool {
 
 func pfsCapacity(deviceName string) (int64, error) {
 	checkCmd := fmt.Sprintf("pfs -C disk info mapper_%s | grep nchild=", deviceName)
-	stdout, stderr, err := utils.ExecCommand(checkCmd, 20 * time.Second)
+	stdout, stderr, err := utils.ExecCommand(checkCmd, 20*time.Second)
 	if err != nil {
 		smslog.Debugf("pfs info %s failed, stdout: %s, stderr: %s, err: %s", deviceName, stdout, stderr, err)
 		return 0, err
@@ -149,7 +148,7 @@ func pfsUsed(deviceName string) (int64, error) {
 	reqSizeIn100GiB := blockDevBytes / (100 * 1024 * 1024 * 1024)
 	checkCmd := fmt.Sprintf("pfs -C disk du  -d 1 /mapper_%s/ | grep /mapper_%s/$",
 		deviceName, deviceName)
-	stdout, stderr, err := utils.ExecCommand(checkCmd, time.Duration(20 + 10 * reqSizeIn100GiB) * time.Second)
+	stdout, stderr, err := utils.ExecCommand(checkCmd, time.Duration(20+10*reqSizeIn100GiB)*time.Second)
 	if err != nil {
 		smslog.Debugf("pfs du %s failed, stdout: %s, stderr: %s, err: %s", deviceName, stdout, stderr, err)
 		return 0, err
