@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package dmhelper
 
@@ -97,6 +96,9 @@ func execDmSetupCommand(options *ReadOptions) (string, error) {
 	stdout, stderr, err = utils.ExecCommand(cmd, utils.CmdDefaultTimeout)
 	if err != nil && !strings.Contains(stderr, "No such device or address") {
 		return "", fmt.Errorf("read dm table failed, stdout: %s, stderr: %s, err: %s", stdout, stderr, err)
+	}
+	if err == nil && strings.Contains(stdout, "No device found") {
+		return "", fmt.Errorf("dm table not found devices")
 	}
 	return stdout, err
 }

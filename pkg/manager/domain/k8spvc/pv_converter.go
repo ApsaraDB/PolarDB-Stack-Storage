@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package k8spvc
 
@@ -198,7 +197,7 @@ func UpdatePvCapacity(clientSet kubernetes.Interface, pvName string, size string
 		if err != nil {
 			return err
 		}
-		if statusStorage, exist := pv.Spec.Capacity[corev1.ResourceStorage]; exist && statusStorage.Equal(newQuantity){
+		if statusStorage, exist := pv.Spec.Capacity[corev1.ResourceStorage]; exist && statusStorage.Equal(newQuantity) {
 			return nil
 		}
 		pv.Spec.Capacity[corev1.ResourceStorage] = newQuantity

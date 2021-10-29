@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -13,18 +13,17 @@
 *limitations under the License.
  */
 
-
 package dmhelper
 
 import (
 	"fmt"
+	"github.com/pkg/errors"
 	"polardb-sms/pkg/agent/utils"
 	"polardb-sms/pkg/common"
 	"polardb-sms/pkg/device"
 	smslog "polardb-sms/pkg/log"
 	"strconv"
 	"strings"
-	"github.com/pkg/errors"
 )
 
 type BlockParam struct {

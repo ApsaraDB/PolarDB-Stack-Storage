@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
 *limitations under the License.
  */
 
-
 package service
 
 import (
@@ -26,7 +25,7 @@ import (
 )
 
 type VolumeService struct {
-	lvRepo        lv.LvRepository
+	lvRepo lv.LvRepository
 }
 
 func (s *VolumeService) Rescan() (*view.WorkflowIdResponse, error) {
@@ -62,6 +61,6 @@ func (s *VolumeService) updateVolumeStatus(lvEntity *lv.LogicalVolumeEntity, sta
 
 func NewVolumeService() *VolumeService {
 	return &VolumeService{
-		lvRepo:        lv.GetLvRepository(),
+		lvRepo: lv.GetLvRepository(),
 	}
 }

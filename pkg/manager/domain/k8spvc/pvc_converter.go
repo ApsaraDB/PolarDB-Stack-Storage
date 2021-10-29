@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package k8spvc
 
@@ -313,7 +312,7 @@ func UpdatePvcRequestCapacity(clientSet kubernetes.Interface, name, namespace, s
 		if pvc.Spec.Resources.Requests == nil {
 			pvc.Spec.Resources.Requests = make(map[corev1.ResourceName]resource.Quantity)
 		}
-		if statusStorage, exist := pvc.Spec.Resources.Requests[corev1.ResourceStorage]; exist && statusStorage.Equal(newQuantity){
+		if statusStorage, exist := pvc.Spec.Resources.Requests[corev1.ResourceStorage]; exist && statusStorage.Equal(newQuantity) {
 			return nil
 		}
 		pvc.Spec.Resources.Requests[corev1.ResourceStorage] = newQuantity
@@ -335,7 +334,7 @@ func UpdatePvcCapacity(clientSet kubernetes.Interface, name, namespace, size str
 		if pvc.Status.Capacity == nil {
 			pvc.Status.Capacity = make(map[corev1.ResourceName]resource.Quantity)
 		}
-		if statusStorage, exist := pvc.Status.Capacity[corev1.ResourceStorage]; exist && statusStorage.Equal(newQuantity){
+		if statusStorage, exist := pvc.Status.Capacity[corev1.ResourceStorage]; exist && statusStorage.Equal(newQuantity) {
 			return nil
 		}
 		pvc.Status.Capacity[corev1.ResourceStorage] = newQuantity

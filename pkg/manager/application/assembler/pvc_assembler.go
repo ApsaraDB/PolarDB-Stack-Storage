@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package assembler
 
@@ -95,8 +94,8 @@ func (a *PvcAssemblerImpl) ToPvcResponses(pvcs []*k8spvc.PersistVolumeClaimEntit
 		result = append(result, pvcResp)
 	}
 	sort.SliceStable(result, func(i, j int) bool {
-		createTimeI, _:= strconv.ParseInt(result[i].CreateTime, 10, 64)
-		createTimeJ, _:= strconv.ParseInt(result[j].CreateTime, 10, 64)
+		createTimeI, _ := strconv.ParseInt(result[i].CreateTime, 10, 64)
+		createTimeJ, _ := strconv.ParseInt(result[j].CreateTime, 10, 64)
 		return createTimeI > createTimeJ
 	})
 	return result
@@ -128,7 +127,7 @@ func (a *PvcAssemblerImpl) ToPvcResponse(pvc *k8spvc.PersistVolumeClaimEntity) *
 		Status:        pvc.PvcStatus,
 		CreateTime:    pvc.CreateTime,
 	}
-	if lvEntity, err := lv.GetLvRepository().FindByVolumeId(pvc.DiskStatus.VolumeId); err == nil && lvEntity != nil{
+	if lvEntity, err := lv.GetLvRepository().FindByVolumeId(pvc.DiskStatus.VolumeId); err == nil && lvEntity != nil {
 		response.VolumeName = lvEntity.VolumeName
 		response.SizeInByte = lvEntity.Size
 	}

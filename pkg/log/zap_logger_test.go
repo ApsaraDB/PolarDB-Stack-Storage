@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 *See the License for the specific language governing permissions and
 *limitations under the License.
  */
-
 
 package log
 
@@ -31,9 +30,9 @@ func TestInitLogger(t *testing.T) {
 		}
 	}()
 	InitLogger("/Users/jimmy/Documents", "test.log", zapcore.DebugLevel)
-		Infof("aiyawoqu %s xxx %s ", "yyyy", "zzzz")
+	Infof("aiyawoqu %s xxx %s ", "yyyy", "zzzz")
 	Warn("xxxxxxxxxxxxxx")
-		Info("aaaaaaaaaaaaaaaaaaaaa ", "bbbb")
+	Info("aaaaaaaaaaaaaaaaaaaaa ", "bbbb")
 
 	Debugf("xxxorxxx")
 }

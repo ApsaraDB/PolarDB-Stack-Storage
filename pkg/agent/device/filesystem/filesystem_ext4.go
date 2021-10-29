@@ -1,4 +1,4 @@
-/* 
+/*
 *Copyright (c) 2019-2021, Alibaba Group Holding Limited;
 *Licensed under the Apache License, Version 2.0 (the "License");
 *you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
 *limitations under the License.
  */
 
-
 package filesystem
 
 import (
@@ -22,10 +21,10 @@ import (
 	"polardb-sms/pkg/agent/device/exec"
 	"polardb-sms/pkg/agent/utils"
 	"polardb-sms/pkg/common"
+	log "polardb-sms/pkg/log"
+	smslog "polardb-sms/pkg/log"
 	"strconv"
 	"strings"
-	smslog "polardb-sms/pkg/log"
-	log "polardb-sms/pkg/log"
 	"time"
 )
 
@@ -91,7 +90,7 @@ func (e *Ext4) FormatFilesystem(deviceName string) error {
 		return err
 	}
 	reqSizeIn100GiB := blockDevBytes / (100 * 1024 * 1024 * 1024)
-	stdout, stderr, err := utils.ExecCommand(ext4MkfsCmd, time.Duration(20 + 10 * reqSizeIn100GiB) * time.Second)
+	stdout, stderr, err := utils.ExecCommand(ext4MkfsCmd, time.Duration(20+10*reqSizeIn100GiB)*time.Second)
 	if err != nil {
 		smslog.Debugf("mkfs %s failed, stdout: %s, stderr: %s, err: %s", deviceName, stdout, stderr, err)
 		return fmt.Errorf("failed exec command %s err %s", ext4MkfsCmd, err)
