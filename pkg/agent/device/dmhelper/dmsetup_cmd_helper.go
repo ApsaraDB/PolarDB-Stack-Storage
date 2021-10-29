@@ -97,7 +97,7 @@ func execDmSetupCommand(options *ReadOptions) (string, error) {
 	if err != nil && !strings.Contains(stderr, "No such device or address") {
 		return "", fmt.Errorf("read dm table failed, stdout: %s, stderr: %s, err: %s", stdout, stderr, err)
 	}
-	if err == nil && strings.Contains(stdout, "No device found") {
+	if err == nil && strings.Contains(stdout, "No device") {
 		return "", fmt.Errorf("dm table not found devices")
 	}
 	return stdout, err
