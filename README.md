@@ -81,6 +81,9 @@ PolarDB Stack存储架构，分为控制平面（Control Plane）和数据平面
 sudo ./script/check_storage.sh
 ```
 
+## 设计原理
+[《PolarDB 管控如何保障 DB 一致性》](https://lynnleelhl.github.io/docs/20211206_db_consistency.html)
+
 # License
 
 # 贡献流程
