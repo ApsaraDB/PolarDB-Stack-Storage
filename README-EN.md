@@ -6,19 +6,19 @@ The shared storage management module provides the following functions for the ma
 
 - In the Shared-Storage architecture, the communication among processes or nodes will be restarted after faults. In this case, the old I/O may overwrite the new one, which is referred to as the onfly io problem.
 
-​                            <img src="docs/img/1.png" alt="img" width="600" />
+​                            <img src="docs-EN/img/1.png" alt="img" width="600" />
 
 
 
 - The storage management module acts as the coordinator and uses the Persistent Reservation locking mechanism of the storage array to solve the problem as shown below:
 
-​                 <img src="docs/img/2.png" alt="img" width="800" />
+​                 <img src="docs-EN/img/2.png" alt="img" width="800" />
 
 ## Overall Architecture
 
 - Logical Architecture
 
-  ![img](docs/img/3.png)
+  ![img](docs-EN/img/3.png)
 
   - The API layer provides unified APIs inside the system to connect the upper adaption layer. These APIs are mainly used for console management and database management and control (read/write permission settings).
 
@@ -38,7 +38,7 @@ The shared storage management module provides the following functions for the ma
 
 - Physical Deployment
 
-  <img src="docs/img/4.png" alt="img" width="400" />
+  <img src="docs-EN/img/4.png" alt="img" width="400" />
 
   - sms-manager: three-node deployment that provides services with one primary node and two read-only nodes.
 
@@ -78,7 +78,7 @@ The storage architecture of PolarDB Stack consists of Control Plane and Data Pla
 | Type                                              | Data Plane                                                   |
 | ------------------------------------------------- | ------------------------------------------------------------ |
 | Compatibility Requirements of SAN Storage         | - It should support FC or iSCSI links.<br />- A LUN has at least two paths.<br />- It should be compatible with the SCSI-3 protocol and support Persistent Reservation-7 mode (Write Exclusive-All Registrants) and Persistent Reservation actions including REGISTER, RESERVE, PREEMPT, RELEASE, and CLEAR. |
-| Compatibility Requirements of Distributed Storage | - It should provide the capability of accessing block devices.<br />- It should support read/write control on block devices including two options:<br />    - It is compatible with the SCSI-3 protocol and supports Persistent Reservation-7 mode (Write Exclusive-All Registrants) and Persistent Reservation actions including REGISTER, RESERVE, PREEMPT, RELEASE, and CLEAR.<br />    - It supports the mechanism similar to SCSI PR and the storage management module can be adjusted to adapt to it. |
+| Compatibility Requirements of Distributed Storage | - It should provide the capability of accessing block devices.<br />- It should support read/write control on block devices including two options:<br />    1. It is compatible with the SCSI-3 protocol and supports Persistent Reservation-7 mode (Write Exclusive-All Registrants) and Persistent Reservation actions including REGISTER, RESERVE, PREEMPT, RELEASE, and CLEAR.<br />    2. It supports the mechanism similar to SCSI PR and the storage management module can be adjusted to adapt to it. |
 
 - Compatibility Detection
 
